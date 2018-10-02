@@ -98,10 +98,6 @@
 			analysis.innerHTML = "";
 			clicks = 0;
 			clearInterval(int);
-			var tr = document.createTextNode("Trial #" + atmpt);
-			var st = document.createElement('STRONG');
-			st.appendChild(tr);
-			analysis.appendChild(st);
 			analysis.appendChild(document.createElement('BR'));
 			for (var i = 1; i < cps.length; i++) {
 				var sc = document.createTextNode("Second " + i + ": " + cps[i]);
