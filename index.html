@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hyperclick</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+		}
+		
+		#btn {
+			/*margin: 0 auto;*/
+			width: 100%;
+			height: 400px;
+			background-color: #444;
+			color: whitesmoke;
+			outline: none;
+			border: none;
+			font-size: 40pt;
+			cursor: pointer;
+		}
+		
+		#btnp {
+			text-align: center;
+			float: left;
+			width: 60%;
+		}
+		
+		#score {
+			font-size: 30pt;
+			font-variant: small-caps;
+			/*border: 1px solid #444;*/
+			border-top: none;
+		}
+		
+		#analysp {
+			height: 500px;
+			width: 40%;
+			overflow-y: auto;
+			text-align: center;
+			float: right;
+		}
+		
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Hyperclick</h1>
+	<div id="parent">
+		<div id="btnp">
+			<button id="btn">Click</button>
+			<div id="score">0</div>
+		</div>
+		<div id="analysp">
+			<h1>CPS</h1>
+			<div id="result"></div>
+			<hr>
+		</div>
+	</div>
+
+
+	<script>
+		var cps = [];
+		var started = false;
+		var clicks = 0;
+		var int;
+		var cp;
+		var atmpt = 0;
+		var btn = document.getElementById('btn');
+		var analysis = document.getElementById('result');
+
+		btn.addEventListener('mousedown', function(e) {
+			if (clicks === 0) {
+				setTimeout(stopClick, 10000);
+				int = setInterval(cpers, 1000);
+			}
+			started = true;
+			btn.style.backgroundColor = '#333';
+			clicks++;
+			cp++;
+			document.getElementById('score').innerHTML = clicks;
+		});
+		btn.addEventListener('mouseup', function() {
+			btn.style.backgroundColor = '#444';
+		});
+
+		function stopClick() {
+			cps.push(cp);
+			cp = 0;
+			atmpt++;
+			alert("Your score is " + score.innerHTML);
+			score.innerHTML = 0;
+			analysis.innerHTML = "";
+			clicks = 0;
+			clearInterval(int);
+			var tr = document.createTextNode("Trial #" + atmpt);
+			var st = document.createElement('STRONG');
+			st.appendChild(tr);
+			analysis.appendChild(st);
+			analysis.appendChild(document.createElement('BR'));
+			for (var i = 1; i < cps.length; i++) {
+				var sc = document.createTextNode("Second " + i + ": " + cps[i]);
+				var br = document.createElement('BR');
+				analysis.appendChild(sc);
+				analysis.appendChild(br);
+			}
+			cps = [];
+
+		}
+
+		function cpers() {
+			cps.push(cp);
+			cp = 0;
+		}
+	</script>
+</body>
+
+</html>
