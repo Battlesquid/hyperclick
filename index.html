@@ -71,6 +71,7 @@
 		var int;
 		var cp;
 		var atmpt = 0;
+		var avg = 0;
 		var btn = document.getElementById('btn');
 		var analysis = document.getElementById('result');
 
@@ -92,12 +93,12 @@
 		function stopClick() {
 			cps.push(cp);
 			cp = 0;
-			atmpt++;
 			alert("Your score is " + score.innerHTML);
 			score.innerHTML = 0;
 			analysis.innerHTML = "";
 			clicks = 0;
 			clearInterval(int);
+
 			analysis.appendChild(document.createElement('BR'));
 			for (var i = 1; i < cps.length; i++) {
 				var sc = document.createTextNode("Second " + i + ": " + cps[i]);
@@ -105,6 +106,17 @@
 				analysis.appendChild(sc);
 				analysis.appendChild(br);
 			}
+			for (var i = 1; i < cps.length; i++) {
+				avg += cps[i];
+			}
+			console.error(cps);
+
+			avg /= cps.length;
+
+			var tr = document.createTextNode("Average:" + avg);
+			var st = document.createElement('STRONG');
+			st.appendChild(tr);
+			analysis.appendChild(st);
 			cps = [];
 
 		}
