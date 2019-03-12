@@ -89,6 +89,18 @@
 		btn.addEventListener('mouseup', function() {
 			btn.style.backgroundColor = '#444';
 		});
+		
+		btn.addEventListener('touchend', () => {
+					if (clicks === 0) {
+				setTimeout(stopClick, 10000);
+				int = setInterval(cpers, 1000);
+			}
+			started = true;
+			btn.style.backgroundColor = '#333';
+			clicks++;
+			cp++;
+			document.getElementById('score').innerHTML = clicks;
+		});
 
 		function stopClick() {
 			cps.push(cp);
